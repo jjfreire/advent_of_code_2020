@@ -9,14 +9,12 @@ with open('input.txt', newline='') as f:
 valid_passwords = 0
 
 for password in input_file:
-    appearances_min, appearances_max = password.split(' ')[0].split('-')
-    appearances_max = int(appearances_max)
-    appearances_min = int(appearances_min)
+    pos_1, pos_2 = password.split(' ')[0].split('-')
+    pos_2 = int(pos_2) - 1
+    pos_1 = int(pos_1) - 1
     letter = password.split(' ')[1][:-1]
     password = password.split(' ')[2]
-    appearances = password.count(letter)
-
-    if (appearances >= appearances_min and appearances <= appearances_max):
+    if ((password[pos_1] == letter) ^ (password[pos_2] == letter)):
         valid_passwords += 1
 
 print(valid_passwords)
